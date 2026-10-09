@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2026 冬日宝岛体验生活</title>
+  <meta name="description" content="日本与台湾冬日旅行行程网站" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:#FFFCF6; --ink:#3E3A39; --coral:#F2A497; --yellow:#F6D27A; --blue:#A8D3E6; --green:#B9DAA5;
+      --white:#fffefa; --shadow: 7px 7px 0 rgba(62,58,57,.13); --radius: 28px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; font-family:'Huninn', system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans SC', sans-serif; color:var(--ink); background:var(--paper); }
+    body::before { content:''; position:fixed; inset:0; pointer-events:none; opacity:.28; background-image: radial-gradient(var(--ink) .7px, transparent .7px); background-size: 18px 18px; }
+    a { color:inherit; text-decoration:none; }
+    .nav { position:fixed; z-index:20; top:10px; left:10px; right:10px; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px; border:3px solid var(--ink); border-radius:999px; background:rgba(255,252,246,.94); box-shadow: var(--shadow); }
+    .brand { font-weight:700; white-space:nowrap; padding-left:6px; }
+    .nav-links { display:flex; gap:6px; overflow:auto; scrollbar-width:none; }
+    .nav-links a { flex:0 0 auto; padding:8px 12px; border:3px solid var(--ink); border-radius:999px; background:var(--white); font-size:14px; }
+    .nav-links a:nth-child(1) { background:var(--coral); } .nav-links a:nth-child(2) { background:var(--yellow); } .nav-links a:nth-child(3) { background:var(--blue); } .nav-links a:nth-child(4) { background:var(--green); }
+    main { width:min(1120px, 100%); margin:auto; padding:94px 16px 42px; }
+    section { scroll-margin-top:96px; }
+    .hero { display:grid; gap:18px; align-items:center; }
+    .card { border:3px solid var(--ink); border-radius:var(--radius); background:var(--white); box-shadow:var(--shadow); padding:18px; }
+    .hero-card { background:var(--blue); overflow:hidden; position:relative; }
+    h1 { margin:8px 0 8px; font-size:clamp(36px, 10vw, 82px); line-height:1.02; letter-spacing:.03em; }
+    h2 { margin:0 0 16px; font-size:clamp(26px, 6vw, 42px); }
+    h3 { margin:0; font-size:20px; }
+    .lead { font-size:18px; line-height:1.7; max-width:35em; }
+    .countdown { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:14px; }
+    .countbox { border:3px solid var(--ink); border-radius:20px; padding:10px 6px; background:var(--paper); text-align:center; }
+    .countbox b { display:block; font-size:26px; } .countbox span { font-size:12px; }
+    .hero-svg { width:100%; min-height:245px; display:block; }
+    .floaty { animation: floaty 4.8s ease-in-out infinite; transform-origin:center; }
+    .train { animation: train 6.5s ease-in-out infinite; }
+    .cloud { animation: cloud 7s ease-in-out infinite; }
+    @keyframes floaty { 0%,100%{ transform:translateY(0) rotate(-1deg); } 50%{ transform:translateY(-9px) rotate(1deg); } }
+    @keyframes train { 0%,100%{ transform:translateX(-4px); } 50%{ transform:translateX(12px); } }
+    @keyframes cloud { 0%,100%{ transform:translateX(0); } 50%{ transform:translateX(18px); } }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:12px; margin:32px 0 12px; }
+    .pill { display:inline-flex; align-items:center; gap:6px; padding:7px 12px; border:3px solid var(--ink); border-radius:999px; background:var(--yellow); font-size:14px; }
+    .flight-grid { display:grid; gap:12px; }
+    .flight { background:var(--paper); display:grid; gap:8px; }
+    .flight-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .tag { display:inline-flex; width:max-content; align-items:center; border:3px solid var(--ink); border-radius:999px; padding:4px 9px; font-size:12px; background:var(--green); }
+    .tag.flight { background:var(--blue); } .tag.rail { background:var(--yellow); } .tag.food { background:var(--coral); } .tag.spot { background:var(--green); } .tag.note { background:var(--paper); } .tag.sleep { background:var(--blue); }
+    .flight pre { margin:0; white-space:pre-wrap; font:inherit; line-height:1.45; }
+    .tabs-wrap { position:sticky; top:78px; z-index:12; margin:0 -16px; padding:8px 16px; background:linear-gradient(var(--paper), rgba(255,252,246,.84)); }
+    .date-tabs { display:flex; gap:8px; overflow:auto; padding:4px 2px 12px; scrollbar-width:none; }
+    .date-tab { flex:0 0 auto; border:3px solid var(--ink); border-radius:18px; background:var(--white); padding:9px 12px; color:var(--ink); font:inherit; cursor:pointer; box-shadow:3px 3px 0 rgba(62,58,57,.15); }
+    .date-tab.active { background:var(--coral); transform:translateY(-3px); }
+    .date-tab.pop { animation: pop .32s cubic-bezier(.2,1.7,.45,1); }
+    @keyframes pop { 0%{transform:scale(.94)} 70%{transform:scale(1.04)} 100%{transform:scale(1)} }
+    .day-panel { display:grid; gap:12px; }
+    .day-summary { display:grid; gap:10px; background:var(--green); }
+    .timeline { position:relative; display:grid; gap:12px; margin-top:4px; }
+    .timeline::before { content:''; position:absolute; left:23px; top:10px; bottom:10px; border-left:3px dashed var(--ink); opacity:.55; }
+    .item { position:relative; display:grid; grid-template-columns:50px 1fr; gap:10px; align-items:start; }
+    .dot { width:22px; height:22px; margin:14px auto 0; border:3px solid var(--ink); border-radius:50%; background:var(--yellow); z-index:1; }
+    .item-card { border:3px solid var(--ink); border-radius:22px; padding:12px; background:var(--white); }
+    .item-title { display:flex; flex-wrap:wrap; align-items:center; gap:7px; font-size:18px; }
+    .must { background:var(--coral); }
+    .details { margin:6px 0 0; line-height:1.55; white-space:pre-wrap; opacity:.9; }
+    .todo-grid, .hotel-grid { display:grid; gap:12px; }
+    .todo { display:flex; align-items:center; gap:10px; border:3px solid var(--ink); border-radius:20px; background:var(--paper); padding:12px; }
+    .todo input { width:24px; height:24px; accent-color:var(--coral); }
+    .todo span { line-height:1.4; }
+    .hotel-list { display:grid; gap:10px; }
+    .hotel-row { display:grid; grid-template-columns:88px 1fr; gap:10px; align-items:start; padding:10px; border:3px solid var(--ink); border-radius:18px; background:var(--paper); }
+    .footer-note { text-align:center; margin:30px 0 0; line-height:1.7; }
+    @media (min-width: 760px) {
+      main { padding-top:110px; } .hero { grid-template-columns:1fr 1fr; } .hero-card { min-height:455px; } .flight-grid { grid-template-columns:repeat(2,1fr); } .todo-grid { grid-template-columns:repeat(2,1fr); } .hotel-grid { grid-template-columns:repeat(2,1fr); } .card { padding:24px; }
+    }
+    @media (min-width: 1020px) { .flight-grid { grid-template-columns:repeat(3,1fr); } }
+    @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; scroll-behavior:auto !important; } .date-tab.active { transform:none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="固定选单">
+    <a class="brand" href="#home">冬日宝岛</a>
+    <div class="nav-links">
+      <a href="#flights">航班</a><a href="#days">每日</a><a href="#todos">待办</a><a href="#hotels">住宿</a>
+    </div>
+  </nav>
+  <main>
+    <section id="home" class="hero">
+      <div class="card hero-card">
+        <span class="pill">日系绘本风行程</span>
+        <h1>2026 冬日<br>宝岛体验生活</h1>
+        <p class="lead">西雅图出发，经东京、名古屋，慢慢抵达台北与台中。把航班、住宿、每日散步与美食都收进一张可爱的旅行小地图。</p>
+        <div class="countdown" id="countdown" aria-live="polite"></div>
+      </div>
+      <div class="card" aria-label="旅行插图">
+        <svg class="hero-svg" viewBox="0 0 520 410" role="img" aria-labelledby="svgTitle svgDesc">
+          <title id="svgTitle">飞机、高铁、台北 101 与山景插图</title><desc id="svgDesc">以浅色平涂绘制日本到台湾的冬日旅行。</desc>
+          <rect x="18" y="20" width="484" height="370" rx="34" fill="#FFFCF6" stroke="#3E3A39" stroke-width="6"/>
+          <g class="cloud" fill="#fff" stroke="#3E3A39" stroke-width="5"><path d="M73 92c12-25 48-20 54 4 19-12 45 2 45 24H50c0-17 10-27 23-28z"/><path d="M354 74c9-18 36-15 42 3 15-9 35 1 35 18h-95c0-12 7-20 18-21z"/></g>
+          <g class="floaty"><path d="M130 142l180-55 18 22-78 63 16 62-23 8-39-48-55 42-16-15 35-52-60-11z" fill="#F2A497" stroke="#3E3A39" stroke-width="6" stroke-linejoin="round"/><circle cx="310" cy="109" r="8" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/></g>
+          <g transform="translate(312 126)"><path d="M72 10l47 240H25z" fill="#A8D3E6" stroke="#3E3A39" stroke-width="6"/><path d="M72 10l-24 240" fill="none" stroke="#3E3A39" stroke-width="5"/><path d="M72 10l24 240" fill="none" stroke="#3E3A39" stroke-width="5"/><rect x="44" y="82" width="58" height="18" rx="9" fill="#F6D27A" stroke="#3E3A39" stroke-width="5"/><rect x="38" y="136" width="68" height="18" rx="9" fill="#B9DAA5" stroke="#3E3A39" stroke-width="5"/></g>
+          <g fill="#B9DAA5" stroke="#3E3A39" stroke-width="6" stroke-linejoin="round"><path d="M31 314c33-58 64-59 99 0z"/><path d="M91 314c43-80 90-78 134 0z"/><path d="M189 314c35-54 73-54 110 0z"/></g>
+          <g class="train" transform="translate(92 292)"><rect x="0" y="0" width="208" height="54" rx="24" fill="#F6D27A" stroke="#3E3A39" stroke-width="6"/><rect x="24" y="13" width="48" height="18" rx="9" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/><rect x="86" y="13" width="48" height="18" rx="9" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/><circle cx="52" cy="57" r="10" fill="#3E3A39"/><circle cx="156" cy="57" r="10" fill="#3E3A39"/></g>
+          <path d="M64 363c86-18 167-16 250 0 49 9 83 10 135-4" fill="none" stroke="#3E3A39" stroke-width="6" stroke-linecap="round" stroke-dasharray="1 16"/>
+        </svg>
+      </div>
+    </section>
+    <section id="flights">
+      <div class="section-head"><h2>航班与移动</h2><span class="pill" id="flightCount"></span></div>
+      <div class="flight-grid" id="flightGrid"></div>
+    </section>
+    <section id="days">
+      <div class="section-head"><h2>每日行程</h2><span class="pill">点日期切换</span></div>
+      <div class="tabs-wrap"><div class="date-tabs" id="dateTabs" role="tablist" aria-label="日期切换"></div></div>
+      <div id="dayPanel" class="day-panel"></div>
+    </section>
+    <section id="todos">
+      <div class="section-head"><h2>出发前待办</h2><span class="pill">可打勾，会自动保存</span></div>
+      <div class="card todo-grid" id="todoList"></div>
+    </section>
+    <section id="hotels">
+      <div class="section-head"><h2>住宿资讯</h2><span class="pill">酒店与点数</span></div>
+      <div class="card hotel-list" id="hotelList"></div>
+    </section>
+    <p class="footer-note">祝旅途像绘本一样轻轻翻页，每一天都有好吃的、好看的、好散步的。</p>
+  </main>
+  <script id="trip-data" type="application/json">{"title": "2026 冬日宝岛体验生活", "subtitle": "西雅图出发，经东京、名古屋，慢慢抵达台北与台中。", "departure": "2026-11-27T12:00:00-08:00", "days": [{"date": "11/27 周五", "iso": "2026-11-27", "city": "西雅图", "hotel": "", "hotelCost": "", "timeline": [{"time": "交通", "type": "flight", "title": "✈️ JL67", "details": "12:00 - 15:30\nSEA - NRT", "must": false}, {"time": "住宿", "type": "sleep", "title": "西雅图", "details": "西雅图", "must": false}]}, {"date": "11/28 周六", "iso": "2026-11-28", "city": "东京", "hotel": "Conrad Tokyo", "hotelCost": "Hilton FN ($1071)", "timeline": [{"time": "行程", "type": "spot", "title": "入住倒时差", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "银座逛吃", "details": "", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "Shimbashi Haru Chan Ramen", "must": false}, {"time": "住宿", "type": "sleep", "title": "Conrad Tokyo", "details": "积分/费用：Hilton FN ($1071)", "must": false}]}, {"date": "11/29 周日", "iso": "2026-11-29", "city": "东京", "hotel": "Conrad Tokyo", "hotelCost": "Hilton FN ($937)", "timeline": [{"time": "行程", "type": "spot", "title": "浜離宮", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "中村藤吉", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "teamLab Borderless", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "麻布台", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "六本木", "details": "", "must": false}, {"time": "住宿", "type": "sleep", "title": "Conrad Tokyo", "details": "积分/费用：Hilton FN ($937)", "must": false}]}, {"date": "11/30 周一", "iso": "2026-11-30", "city": "名古屋", "hotel": "Conrad Nagoya", "hotelCost": "Hilton 70k ($513)", "timeline": [{"time": "行程", "type": "spot", "title": "久屋大通公园", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "荣逛吃", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "美登利", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "叙々苑", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "鳗鱼饭", "must": false}, {"time": "住宿", "type": "sleep", "title": "Conrad Nagoya", "details": "积分/费用：Hilton 70k ($513)", "must": false}]}, {"date": "12/1 周二", "iso": "2026-12-01", "city": "名古屋", "hotel": "Conrad Nagoya", "hotelCost": "Hilton 70k ($513)", "timeline": [{"time": "行程", "type": "spot", "title": "德川园+名古屋城", "details": "", "must": true}, {"time": "备选", "type": "spot", "title": "备选：犬山半日游", "details": "", "must": false}, {"time": "备选", "type": "spot", "title": "(单程1h)", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "Noritake Garden买瓷器", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "TSUTAYA BOOKSTORE", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "和幸", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "蓬莱軒 松坂屋", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "红豆吐司🍞", "must": false}, {"time": "住宿", "type": "sleep", "title": "Conrad Nagoya", "details": "积分/费用：Hilton 70k ($513)", "must": false}]}, {"date": "12/2 周三", "iso": "2026-12-02", "city": "名古屋", "hotel": "台北洲际", "hotelCost": "IHG 66k", "timeline": [{"time": "交通", "type": "flight", "title": "✈️ JL 8671", "details": "12:05 - 14:40\nNGO - TPE", "must": false}, {"time": "行程", "type": "spot", "title": "入境台北", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "酒店躺平 🏊🏋️", "details": "", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "手羽", "must": false}, {"time": "住宿", "type": "sleep", "title": "台北洲际", "details": "积分/费用：IHG 66k", "must": false}]}, {"date": "12/3 周四", "iso": "2026-12-03", "city": "台北", "hotel": "台北洲际", "hotelCost": "IHG 66k", "timeline": [{"time": "行程", "type": "spot", "title": "101大楼喝☕️ 冰箱贴", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "新光三越", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "陶朱隐园", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "富邦美术馆", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "松山文创园", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "🎬诚品电影院", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "101鼎泰丰", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "青花骄麻辣锅", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "吴留手居酒屋", "must": false}, {"time": "住宿", "type": "sleep", "title": "台北洲际", "details": "积分/费用：IHG 66k", "must": false}]}, {"date": "12/4 周五", "iso": "2026-12-04", "city": "台北", "hotel": "台北洲际", "hotelCost": "IHG 69k", "timeline": [{"time": "小插曲", "type": "local", "title": "中山大学看日落", "details": "旗津岛骑车🚴", "must": false}, {"time": "上午", "type": "spot", "title": "⛰️清晨爬象山", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "吴兴街", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "🥬 逛超市", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "臺北流行音樂中心", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "穆记牛肉面", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "周家豆腐捲", "must": false}, {"time": "住宿", "type": "sleep", "title": "台北洲际", "details": "积分/费用：IHG 69k", "must": false}]}, {"date": "12/5 周六", "iso": "2026-12-05", "city": "台北", "hotel": "台北洲际", "hotelCost": "IHG三送一", "timeline": [{"time": "行程", "type": "spot", "title": "🍜 八德路 南京东路", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "🚶‍➡️ 信义区闲逛", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "瑞帛咖啡Rebirth Coffee / 富善雞湯麵舖 / 關東本家", "must": false}, {"time": "住宿", "type": "sleep", "title": "台北洲际", "details": "积分/费用：IHG三送一", "must": false}]}, {"date": "12/6 周日", "iso": "2026-12-06", "city": "台北", "hotel": "Kimpton Daan", "hotelCost": "IHG 42k", "timeline": [{"time": "行程", "type": "spot", "title": "🚉 台北车站", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "⛲️ 大稻埕码头公园", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "🌈 西门町", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "Risograph Museum", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "Nanago Market", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "📖浮光書店", "details": "", "must": false}, {"time": "晚上", "type": "spot", "title": "[音乐会]", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "麦当劳/法大炸雞", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "青嬌膠原麵館", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "雄记手抓饼 / 龍潭豆花", "must": false}, {"time": "住宿", "type": "sleep", "title": "Kimpton Daan", "details": "积分/费用：IHG 42k", "must": false}]}, {"date": "12/7 周一", "iso": "2026-12-07", "city": "台北", "hotel": "Kimpton Daan", "hotelCost": "IHG 42k", "timeline": [{"time": "小插曲", "type": "local", "title": "坂本龍一︱觀音．聽時", "details": "Ryuichi Sakamoto | seeing sound, hearing time\n2026.10.31 – 2027.03.14\n台北市立美術館\n北美館一樓1A、1B展覽室", "must": false}, {"time": "行程", "type": "spot", "title": "自由广场", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "中正纪念堂", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "永康街 (亚洲最酷街道)", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "青田街", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "大安森林公园", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "台湾大学", "details": "", "must": false}, {"time": "晚上", "type": "spot", "title": "🏙️ 信义路4段 101夜景", "details": "", "must": true}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "黄记卤肉饭 / 大師兄銷魂麵舖", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "奶茶", "must": false}, {"time": "住宿", "type": "sleep", "title": "Kimpton Daan", "details": "积分/费用：IHG 42k", "must": false}]}, {"date": "12/8 周二", "iso": "2026-12-08", "city": "台北", "hotel": "Kimpton Daan", "hotelCost": "IHG 47k", "timeline": [{"time": "行程", "type": "spot", "title": "🚶 鼻头角步道", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "🐱 猴硐貓村", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "🩴 逛NET", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "💆 按摩", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "瑞芳车站", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "栩栩", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "蛋饼", "must": false}, {"time": "住宿", "type": "sleep", "title": "Kimpton Daan", "details": "积分/费用：IHG 47k", "must": false}]}, {"date": "12/9 周三", "iso": "2026-12-09", "city": "台北", "hotel": "Kimpton Daan", "hotelCost": "IHG三送一", "timeline": [{"time": "行程", "type": "spot", "title": "🚴 河濱公园双人协力车", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "博物馆", "details": "", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "子曰深夜食堂", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "奶酥厚片", "must": false}, {"time": "住宿", "type": "sleep", "title": "Kimpton Daan", "details": "积分/费用：IHG三送一", "must": false}]}, {"date": "12/10 周四", "iso": "2026-12-10", "city": "台中", "hotel": "InterContinental Taichung", "hotelCost": "IHG FN ($281)", "timeline": [{"time": "交通", "type": "rail", "title": "🚄 台北 - 台中", "details": "(50 mins)", "must": false}, {"time": "行程", "type": "spot", "title": "台中车站", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "臺中驛鐵道文化園區", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "宫原眼科", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "🎨 勤美術館", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "📖 诚品书店", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "台中车站/春水堂", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "明娟楼", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "冬瓜茶", "must": false}, {"time": "住宿", "type": "sleep", "title": "InterContinental Taichung", "details": "积分/费用：IHG FN ($281)", "must": false}]}, {"date": "12/11 周五", "iso": "2026-12-11", "city": "台中", "hotel": "InterContinental Taichung", "hotelCost": "IHG FN ($281)", "timeline": [{"time": "行程", "type": "spot", "title": "东海大学", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "⛪️ 路思義教堂", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "🎨 國立臺灣美術館", "details": "", "must": true}, {"time": "行程", "type": "spot", "title": "逛Costco", "details": "", "must": false}, {"time": "午饭", "type": "food", "title": "午餐候选", "details": "老井烧肉", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "稻·麥食堂", "must": false}, {"time": "备注", "type": "note", "title": "小吃与提醒", "details": "臭豆腐", "must": false}, {"time": "住宿", "type": "sleep", "title": "InterContinental Taichung", "details": "积分/费用：IHG FN ($281)", "must": false}]}, {"date": "12/12 周六", "iso": "2026-12-12", "city": "台中", "hotel": "", "hotelCost": "", "timeline": [{"time": "交通", "type": "rail", "title": "🚄 台中 - 桃园 (50 mins)", "details": "", "must": false}, {"time": "交通", "type": "flight", "title": "✈️ BR24", "details": "23:00 - 17:30, TPE - SEA", "must": false}, {"time": "行程", "type": "spot", "title": "🛍️ 买伴手礼", "details": "", "must": false}, {"time": "行程", "type": "spot", "title": "[蔦屋書店]", "details": "", "must": false}, {"time": "晚饭", "type": "food", "title": "晚餐候选", "details": "桃园机场", "must": false}, {"time": "住宿", "type": "sleep", "title": "台中", "details": "台中", "must": false}]}], "flights": [{"date": "11/27 周五", "city": "西雅图", "text": "✈️ JL67\n12:00 - 15:30\nSEA - NRT", "kind": "主要交通"}, {"date": "12/2 周三", "city": "名古屋", "text": "✈️ JL 8671\n12:05 - 14:40\nNGO - TPE", "kind": "主要交通"}, {"date": "12/10 周四", "city": "台中", "text": "🚄 台北 - 台中\n(50 mins)", "kind": "主要交通"}, {"date": "12/12 周六", "city": "台中", "text": "🚄 台中 - 桃园 (50 mins)", "kind": "主要交通"}, {"date": "12/12 周六", "city": "台中", "text": "✈️ BR24\n23:00 - 17:30, TPE - SEA", "kind": "主要交通"}]}</script>
+  <script>
+    const trip = JSON.parse(document.getElementById('trip-data').textContent);
+    const $ = (s, root=document) => root.querySelector(s);
+    const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+    const typeLabel = { flight:'飞机', rail:'高铁', walk:'散步', local:'交通', spot:'景点', food:'美食', note:'备注', sleep:'住宿' };
+    const typeIcon = { flight:'✈️', rail:'🚄', walk:'🚶', local:'🧭', spot:'📍', food:'🥢', note:'📝', sleep:'🛏️' };
+    const fmt = text => String(text || '').replace(/\n/g, '<br>');
+    function updateCountdown() {
+      const target = new Date(trip.departure).getTime();
+      const diff = Math.max(0, target - Date.now());
+      const d = Math.floor(diff / 86400000), h = Math.floor(diff / 3600000) % 24, m = Math.floor(diff / 60000) % 60, s = Math.floor(diff / 1000) % 60;
+      $('#countdown').innerHTML = [['天',d],['时',h],['分',m],['秒',s]].map(([label,val]) => `<div class="countbox"><b>${String(val).padStart(2,'0')}</b><span>${label}</span></div>`).join('');
+    }
+    function renderFlights() {
+      $('#flightCount').textContent = `${trip.flights.length} 段记录`;
+      $('#flightGrid').innerHTML = trip.flights.map((f,i) => `<article class="card flight"><div class="flight-top"><span class="tag flight">${f.kind}</span><strong>${f.date}</strong></div><pre>${f.text}</pre><small>${f.city || '移动日'}</small></article>`).join('');
+    }
+    let active = Number(localStorage.getItem('trip-active-day') || 0);
+    function renderTabs() {
+      $('#dateTabs').innerHTML = trip.days.map((d,i) => `<button class="date-tab ${i===active?'active':''}" role="tab" aria-selected="${i===active}" data-i="${i}"><strong>${d.date.split(' ')[0]}</strong><br><small>${d.city || '移动'}</small></button>`).join('');
+      $$('.date-tab').forEach(btn => btn.addEventListener('click', () => { active = Number(btn.dataset.i); localStorage.setItem('trip-active-day', active); renderTabs(); renderDay(true); }));
+    }
+    function renderDay(pop=false) {
+      const d = trip.days[active];
+      const panel = $('#dayPanel');
+      panel.innerHTML = `<div class="card day-summary ${pop?'pop':''}"><span class="pill">${d.date}</span><h3>${d.city || '移动日'}</h3><p>${d.hotel ? `今晚住：${d.hotel}` : '今天以移动为主。'} ${d.hotelCost ? `｜${d.hotelCost}` : ''}</p></div><div class="timeline">${d.timeline.map(item => `<div class="item"><div class="dot"></div><article class="item-card"><div class="item-title"><span class="tag ${item.type}">${typeIcon[item.type] || '•'} ${item.time || typeLabel[item.type]}</span>${item.must ? '<span class="tag must">必去</span>' : ''}<strong>${fmt(item.title)}</strong></div>${item.details ? `<p class="details">${fmt(item.details)}</p>` : ''}</article></div>`).join('')}</div>`;
+      if (pop) panel.animate?.([{transform:'scale(.985)', opacity:.82}, {transform:'scale(1)', opacity:1}], {duration:260, easing:'cubic-bezier(.2,1.5,.35,1)'});
+    }
+    const todos = ['确认护照、签证与入境资料', '准备 eSIM / 国际漫游', '下载日本与台湾交通 App', '整理航班、酒店、会员号码截图', '预约热门餐厅与展览门票', '带转换插头、行动电源、雨具', '准备日币、台币与备用信用卡', '出发前检查家中电器与垃圾'];
+    function renderTodos() {
+      const saved = JSON.parse(localStorage.getItem('trip-todos') || '{}');
+      $('#todoList').innerHTML = todos.map((t,i) => `<label class="todo"><input type="checkbox" data-i="${i}" ${saved[i]?'checked':''}><span>${t}</span></label>`).join('');
+      $$('#todoList input').forEach(input => input.addEventListener('change', () => { const state = JSON.parse(localStorage.getItem('trip-todos') || '{}'); state[input.dataset.i] = input.checked; localStorage.setItem('trip-todos', JSON.stringify(state)); }));
+    }
+    function renderHotels() {
+      const seen = new Set();
+      const rows = trip.days.filter(d => d.hotel || d.city).map(d => { const key = `${d.date}-${d.hotel}-${d.city}`; if(seen.has(key)) return ''; seen.add(key); return `<div class="hotel-row"><strong>${d.date}</strong><div>${d.hotel ? `<b>${d.hotel}</b>` : '<b>移动日</b>'}<br><span>${d.city || ''}</span>${d.hotelCost ? `<br><small>${d.hotelCost}</small>` : ''}</div></div>`; }).join('');
+      $('#hotelList').innerHTML = rows;
+    }
+    updateCountdown(); setInterval(updateCountdown, 1000);
+    renderFlights(); renderTabs(); renderDay(); renderTodos(); renderHotels();
+  </script>
+</body>
+</html>
