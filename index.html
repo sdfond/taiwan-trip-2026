@@ -44,8 +44,7 @@
     .route-svg { width:100%; display:block; min-height:340px; }
     .route-line { fill:none; stroke:var(--coral); stroke-width:9; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:18 12; animation: route-dash 14s linear infinite; }
     .route-shadow { fill:none; stroke:var(--ink); stroke-width:15; stroke-linecap:round; stroke-linejoin:round; opacity:.22; }
-    .route-dot { animation: pulse 2.8s ease-in-out infinite; transform-origin:center; }
-    .route-dot:nth-of-type(2n) { animation-delay:.35s; }
+    .route-dot { transform-origin:center; }
     .map-label { font-size:18px; paint-order:stroke; stroke:var(--paper); stroke-width:7; stroke-linejoin:round; fill:var(--ink); }
     .map-legend { display:grid; gap:10px; }
     .legend-item { display:flex; align-items:center; gap:10px; border:3px solid var(--ink); border-radius:20px; padding:10px 12px; background:var(--white); }
@@ -143,18 +142,22 @@
             <path class="route-shadow" d="M660 116 C607 92 533 105 475 168 C432 192 391 212 350 230 C295 258 240 293 185 330 C171 350 162 370 155 390 C174 384 190 375 205 363 C336 455 561 421 652 244 C695 165 704 128 660 116"/>
             <path class="route-line" d="M660 116 C607 92 533 105 475 168 C432 192 391 212 350 230 C295 258 240 293 185 330 C171 350 162 370 155 390 C174 384 190 375 205 363 C336 455 561 421 652 244 C695 165 704 128 660 116"/>
             <g fill="#fff" stroke="#3E3A39" stroke-width="5">
-              <circle class="route-dot" cx="660" cy="116" r="17"/><circle class="route-dot" cx="475" cy="168" r="17"/><circle class="route-dot" cx="350" cy="230" r="17"/><circle class="route-dot" cx="185" cy="330" r="17"/><circle class="route-dot" cx="155" cy="390" r="17"/><circle cx="205" cy="363" r="11"/>
+              <circle class="route-dot" cx="660" cy="116" r="11"/><circle class="route-dot" cx="475" cy="168" r="11"/><circle class="route-dot" cx="350" cy="230" r="11"/><circle class="route-dot" cx="185" cy="330" r="11"/><circle class="route-dot" cx="155" cy="390" r="11"/><circle class="route-dot" cx="205" cy="363" r="11"/>
             </g>
             <g fill="#F2A497" stroke="#3E3A39" stroke-width="4">
               <path d="M557 107l44-15 8 8-26 20 6 20-9 4-14-17-19 13-5-6 13-16-20-5z"/>
               <path d="M244 269l43-12 8 9-25 17 5 19-9 4-13-16-19 11-5-6 13-14-20-6z"/>
               <path d="M514 396l45-11 8 9-25 17 5 19-9 4-13-16-20 10-5-6 14-14-21-6z"/>
             </g>
-            <g class="train" transform="translate(382 178) scale(.64)">
-              <rect x="0" y="0" width="124" height="36" rx="18" fill="#F6D27A" stroke="#3E3A39" stroke-width="6"/><rect x="18" y="9" width="28" height="12" rx="6" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/><rect x="58" y="9" width="28" height="12" rx="6" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/>
+            <g class="route-train-icon" transform="translate(372 145) rotate(-20) scale(.72)">
+              <path d="M7 31C22 9 73 3 112 18l20 8-13 22H13z" fill="#F6D27A" stroke="#3E3A39" stroke-width="6" stroke-linejoin="round"/>
+              <rect x="28" y="18" width="24" height="12" rx="5" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/><rect x="62" y="16" width="24" height="12" rx="5" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/>
+              <path d="M20 51h84" fill="none" stroke="#3E3A39" stroke-width="5" stroke-linecap="round"/>
             </g>
-            <g class="train" transform="translate(104 346) scale(.62)">
-              <rect x="0" y="0" width="124" height="36" rx="18" fill="#F6D27A" stroke="#3E3A39" stroke-width="6"/><rect x="18" y="9" width="28" height="12" rx="6" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/><rect x="58" y="9" width="28" height="12" rx="6" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/>
+            <g class="route-train-icon" transform="translate(78 326) rotate(-58) scale(.68)">
+              <path d="M7 31C22 9 73 3 112 18l20 8-13 22H13z" fill="#F6D27A" stroke="#3E3A39" stroke-width="6" stroke-linejoin="round"/>
+              <rect x="28" y="18" width="24" height="12" rx="5" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/><rect x="62" y="16" width="24" height="12" rx="5" fill="#A8D3E6" stroke="#3E3A39" stroke-width="4"/>
+              <path d="M20 51h84" fill="none" stroke="#3E3A39" stroke-width="5" stroke-linecap="round"/>
             </g>
             <text class="map-label" x="615" y="93">西雅图</text>
             <text class="map-label" x="486" y="156">东京</text>
@@ -162,9 +165,7 @@
             <text class="map-label" x="203" y="324">台北</text>
             <text class="map-label" x="95" y="416">台中</text>
             <text x="212" y="381" fill="#3E3A39" font-size="13">桃园</text>
-            <text x="360" y="164" fill="#3E3A39" font-size="14">🚄 东京 → 名古屋</text>
-            <text x="58" y="340" fill="#3E3A39" font-size="14">🚄 台北 → 台中</text>
-            <text x="58" y="458" fill="#3E3A39" font-size="15">SEA → NRT ⇢ 🚄 名古屋 → TPE ⇢ 🚄 台中 → 桃园 → SEA</text>
+            <text x="58" y="458" fill="#3E3A39" font-size="15">SEA → NRT → 名古屋 → TPE → 台北 → 台中 → 桃园 → SEA</text>
           </svg>
           <div class="map-legend" aria-label="路线说明">
             <div class="legend-item"><span class="legend-mark flight"></span><span><strong>飞行段</strong><br>西雅图到东京、名古屋到台北、桃园回西雅图。</span></div>
